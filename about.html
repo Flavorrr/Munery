@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT US</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>    
+
+   <header class="header">
+    <div class="container">
+        <div class="Header__logo">
+            <img src="./img/M-logo-1..png" alt="website-Logo"style="width: 180px; height:auto;">
+        </div>
+        <div class="header__nav">
+                 <nav class="header__menu mobile-menu">
+                     <ul>
+                         <li class="active"><a href="./index.html">Main</a></li>
+                         <li><a href="./home.html">Home</a> </li>
+                         <li><a href="./about.html">About</a></li>
+                         <li><a href="./Contact.html">Contact</a></li>
+                         <li><a href="./blog.html">blog</a></li>
+                     </ul>
+                 </nav>
+                 <div class="header__right__social">
+                     <a href=""><i class="fa fa facebook"></i></a>
+                     <a href=""><i class="fa fa twitter"></i></a>
+                     <a href=""><i class="fa fa Instagram"></i></a>
+                     <a href=""><i class="fa fa Tiktok"></i></a>
+                 </div>
+        </div>
+        <div id="user-info">
+            Logged in as:<span id="Username"></span>
+            <button onclick="button()">Logout</button>
+        </div>
+    </div>
+    </header>
+    
+<main>
+    <section id="about-section" class="section">
+        <h2>About us  <button><a href="./home.html" style="color:white;">Back to Homepage</a></button></h2>
+                <div class="about-container" setbg="../img/Munery-bg-2.png">
+                    <div class="about-img-bg">
+                    <h3>Who is Munery</h3>
+                    <p><i>Yes You read that right! Munery Achievers is not just a company 
+                        but a community of people brought together by a desire to understand or get help understanding 
+                        machine language, design, and on top of this, incorporate other levels of knowledge. This is 
+                        seen through tackling of asignments in various fields which include tech, medicine, nursing, history, finance, etc.
+                        Our team of professional experts is well vast and is dedicated to ensuring customer satisfaction by delivering 
+                        top notch grades in thesis, case studies, essays, research papers, among others; In addition, we offer training to candidates 
+                        interested in learning machine languages inclusive of CSS, JAVASCRIPT, HTML, PYTHON at an affrodable fee and assist them land jobs worldwide</i></p>
+                        <p><i>Munery was just an idea brought forth by our C.E.O and mentor <a href="./myportfolio/index.html">Reuben Munene Mwangi</a>;A Mathematics and Computer Science Expert in the year 2021
+                            who later with the help of our team was able to start the company officially in the year 2023. Munery was derived from our C.E.O desire
+                            to tell his story in the field of tech while also gathering knowldge in other field; Munene's story hence the name Munery.</I></p>
+                            <button><a href="./website.html" style="color:white">Web Development</a></button>
+                        </div>
+                </div>
+                    
+            <div class="subsection">
+                <h3>Targeted Audiences</h3>
+                <p><i>Our Audiences vary from young to old to students and non students. We have programs set up for all including beginners without 
+                    even the slightest knowledge to experts in need of top-paying jobs. Students can submit assignments if in need of assistance and our team will tackle them
+                    and non-students of any age can apply to join our training programs in a field of their interest and learn.
+                </i></p>
+                <p><i>Like the name suggests we are committed to ACHIEVING and not simply achieving but ACHIEVING EXCELLENCE.</i></p>
+                <button><a href="./training.html" style="color:white;">Join the team</a></button>
+                <button><a href="./Assignment.html" style="color:white;">Submit Assignment </a></button>
+                <button><a href="./Other.html" style="color:white;">Ask a question</a></button>
+            </div>
+            <div class="subsection">
+                <h3>Where you can find us</h3>
+                <p><i>Knowing we have picked your interest, you can reach us through our social media platforms for comments, 
+                    training, assistance or even questions.</i></p>
+                    <button><a href="./Contact.html" style="color:white;">ContactUs</a></button>
+            </div>
+            <div class="subsection">
+                <div class="text-container" id="text-box">
+                    <title>Achievements</title><style>title{color:blue;}</style> 
+                    <text-p><I>During our time in market we have had the privilidge to work with other companies including Online Jobs Connect, Centrino Technologies, and Andela. Through this, we have 
+                        been able to garner worldwide clients interested in our professional writing services and also partner with individuals to in web development to build applications and websites with easy and convinient user interfaces.
+                        . This can be seen from our client testimonials and comments.</I></text-p>
+                        <button><a href="./Other.html" style="color:white;">Testimonials and Comments</a></button>    
+                </div>
+            </div>
+    </section>
+</main>
+    <Script>
+        function logout(){
+            localstorage:removeItem("token");
+            localstorage:removeItem("username");
+            document.getElementbyId("auth-container").style.display="flex";
+            document.getElementbyId("main-content").style.display="none"
+        }
+    </Script>
+    <footer class="footer">
+
+    </footer>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en"> 
+ <head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLAVORED</title> 
+    <link rel="stylesheet" href="css/style.css" type="text/css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+ </head> 
+ <body>
+    <div id="auth-container"> 
+    <div class="auth-box" id="login-box"> 
+    <h2>Sign In</h2> 
+    <input type="text" id="login-username" placeholder="Username"> 
+    <input type="password" id="login-password" placeholder="Password"> <button onclick="login()">Login</button> 
+    <t>Don't have an account? <span class="toggle-link" onclick="toggleAuth()">Sign Up</span></t> 
+   </div> 
+   <div class="auth-box" id="signup-box"> 
+    <h2>Sign Up</h2> 
+    <input type="text" id="signup-username" placeholder="Choose a Username"> 
+    <input type="password" id="signup-password" placeholder="Choose a Password"> <button onclick="signup()">Sign Up</button> 
+    <p>Already have an account? <span class="toggle-link" onclick="toggleAuth()">Sign In</span></p> 
+   </div> 
+  </div>
+   <!-- Main Content (Hidden Until Login) -->
+  <div class="index-container">
+  <div id="main-content">   
+   <header class="header">
+       <div class="container">
+                    <div class="header__logo">
+                      <img src="./img/M-logo-1..png" alt="website-Logo">
+                    </div>
+              <div class="header__nav">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li class="active"><a href="./index.html">Main</a></li>
+                            <li><a href="./home.html">Home</a> </li>
+                            <li><a href="./about.html">About</a></li>
+                            <li><a href="./Contact.html">Contact</a></li>
+                            <li><a href="./blog.html">blog</a></li>
+                        </ul>
+                    </nav>
+                    <div class="header__right__social">
+                        <a href="#" title="Facebook"><i class="fab fa facebook-f"></i></a>
+                        <a href="#" title="twitter"><i class="fab fa twitter"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa instagram"></i></a>
+                        <a href="#" title="Tiktok"><i class="fab fa tiktok"></i></a>
+                    </div>
+                  </div>
+        <div class="user-container">
+        <div id="user-info">
+        <ul>
+          <li><a href="./profile.html" Style="color:white; border: 2px solid green; border-radius:5px; background-color:green; text-decoration:none;font-size: 13px;padding:1.5px">View profile</a></li>
+          <li>Username:<span id="display-username" style="font-size:15px;"></span></li>
+          <li><button onclick="logout()" style="border-radius:5px;">Logout</button></li>
+        </ul>
+        </div>
+      </div>
+      </div>
+    </header>
+
+    <div class="main-container">
+      <div class="img-bg"></div>
+        <h1 class="animate-text">MUNERY ACHIEVERS</h1>
+        <div id="subsection">
+            <div id="container">
+                <p>Welcome to the official Munery Achievers webpage.<br>We are not just a company but a family. A family of developers, designers, assisters, trainers, trainees.<br>
+                   Here, we do not just handle tasks but strive to break barriers of limitations.<br> <b>To know more about Munery Achievers,
+                  click the button below.</b></p>
+                  <button><a href="./about.html" style="color:darkgreen; font-size:18px; font-weight:750; text-decoration:none; font:Times-New-Roman;">ABOUT US</a></button>  
+                  <p><b>To join the team click below:</b></p>
+                <button><a href="./home.html" style="color:darkgreen; font-size: 18px; font-weight: 750; text-decoration:none;">START</a> </button>
+            </div>
+        </div>
+      </div>
+  </div>
+  </div>
+  </div>
+        <script>
+            function toggleAuth() {
+        let loginBox = document.getElementById("login-box");
+        let signupBox = document.getElementById("signup-box");
+      
+        if (loginBox && signupBox) {
+          if (loginBox.style.display === "none") {
+            loginBox.style.display = "block";
+            signupBox.style.display = "none";
+          } else {
+            loginBox.style.display = "none";
+            signupBox.style.display = "block";
+          }
+        } else {
+          console.error("Auth boxes not found");
+        }
+      }
+          async function signup() {
+            let username = document.getElementById("signup-username").value;
+            let password = document.getElementById("signup-password").value;
+      
+            try {
+              let response = await fetch("http://localhost:5000/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+              });
+      
+              let data = await response.json();
+              alert(data.message);
+              if (response.ok) toggleAuth();
+            } catch (error) {
+              console.error("Error:", error);
+            }
+          }
+      
+          async function login() {
+            let username = document.getElementById("login-username").value;
+            let password = document.getElementById("login-password").value;
+      
+            try {
+              let response = await fetch("http://localhost:5000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+              });
+      
+              let data = await response.json();
+              alert(data.message);
+      
+              if (response.ok) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("username", username);
+                document.getElementById("auth-container").style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+                document.getElementById("display-username").textContent = username;
+              }
+            } catch (error) {
+              console.error("Error:", error);
+            }
+          }
+      
+          function logout() {
+            localStorage.removeItem("token");
+            localStorage.removeItem("username");
+            document.getElementById("auth-container").style.display = "flex";
+            document.getElementById("main-content").style.display = "none";
+          }
+      
+          // Auto-login if token exists
+          window.onload = function () {
+            const token = localStorage.getItem("token");
+            const username = localStorage.getItem("username");
+      
+            if (token && username) {
+              document.getElementById("auth-container").style.display = "none";
+              document.getElementById("main-content").style.display = "block";
+              document.getElementById("display-username").textContent = username;
+            }
+          }
+        </script>
+       </body>
+      </html>
